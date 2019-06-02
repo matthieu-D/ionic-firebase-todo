@@ -1,14 +1,25 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-      Ionic Blank
+    <ion-title text-center>
+      Ionic Firebase TODO
     </ion-title>
   </ion-toolbar>
 </ion-header>
+  
+<ion-content padding>
 
-<ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+  <input type="text" [(ngModel)]="newTask.name">
+
+  <ion-button (click)="addTask(newTask)"><ion-icon name="add"></ion-icon></ion-button>
+
+  <ion-list>
+
+    <ion-item *ngFor="let task of tasks | async">
+      <input type="text" [(ngModel)]="task.name">
+      <ion-button item-left (click)="removeTask(task.key)"><ion-icon name="remove"></ion-icon></ion-button>
+      <ion-button item-left (click)="updateTask(task.key, task.name)"><ion-icon name="brush"></ion-icon></ion-button>
+    </ion-item>
+
+  </ion-list>
+
 </ion-content>
